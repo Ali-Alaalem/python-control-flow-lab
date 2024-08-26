@@ -144,7 +144,11 @@ calculate_dog_years()
 def weather_advice():
     cold = input("Is it cold? (yes/no): ").lower()
     raining = input("Is it raining? (yes/no): ").lower()
-    if cold  in ['yes', 'no'] or raining in ['yes', 'no']:
+
+    if cold not in ['yes', 'no'] or raining not in ['yes', 'no']:
+         print("invalid input. Please enter a valid input.")
+         weather_advice()
+    else:
         if cold == "yes" and raining == "yes":
             print("Wear a waterproof coat.")
         elif cold == "yes" and raining == "no":
@@ -152,10 +156,7 @@ def weather_advice():
         elif cold == "no" and raining == "yes":
             print("Carry an umbrella.")
         else:
-            print("Wear light clothing.")
-    else:
-        print("invalid input. Please enter a valid input.")
-        weather_advice()
+            print("Wear light clothing.") 
 
 weather_advice()
 
