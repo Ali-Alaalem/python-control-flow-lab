@@ -46,6 +46,7 @@ def check_letter():
             print(f"The letter {user} is a consonant.")
   else:
         print("Invalid input. Please enter a letter (a-z or A-Z).")
+        check_letter()
 
 
 check_letter()
@@ -68,13 +69,18 @@ check_letter()
 
 def check_voting_eligibility():
     voting_age = 18
-    age = int(input("Please enter your age: "))
-    if age < 0:
-        print("Invalid age. Please enter a valid age.")
-    elif age >= voting_age:
-        print("You are eligible to vote.")
+    age = input("Please enter your age: ")
+    if age.isnumeric():
+        if int(age) < 0:
+            print("Invalid age. Please enter a valid age.")
+        elif int(age) >= voting_age:
+            print("You are eligible to vote.")
+        else:
+            print("You are not eligible to vote.")
     else:
-        print("You are not eligible to vote.")
+        print("invalid input. Please enter a valid age.")
+        check_voting_eligibility()
+
    
 
 # Call the function
@@ -100,17 +106,23 @@ check_voting_eligibility()
 
 def calculate_dog_years():
     # Your code goes here. Remember to indent!
-    dog_age = int(input("Input a dog's age: "))
-    if dog_age < 0:
-        print("Invalid age. Please enter a valid age.")
-    elif dog_age == 1:
-        dog_years = 10
-    elif dog_age == 2:
-        dog_years = 20
+    dog_age = input("Input a dog's age: ")
+    if dog_age.isnumeric():
+        if int(dog_age) < 0:
+            print("Invalid age. Please enter a valid age.")
+        elif int(dog_age) == 1:
+            dog_years = 10
+        elif int(dog_age) == 2:
+            dog_years = 20
+        else:
+            dog_years = 20 + (int(dog_age) - 2) * 7
+        print(f"The dog's age in dog years is {dog_years}.")
     else:
-        dog_years = 20 + (dog_age - 2) * 7
-    print(f"The dog's age in dog years is {dog_years}.")
-# Call the function
+        print("invalid input. Please enter a valid dog age.")
+        calculate_dog_years()
+
+        
+
 calculate_dog_years()
 
 # Exercise 4: Weather Advice
@@ -130,18 +142,21 @@ calculate_dog_years()
 # - Use logical operators (`AND`, `OR`, `NOT`) in your if statements to handle multiple conditions.
 
 def weather_advice():
-    # Your code goes here. Remember to indent!
     cold = input("Is it cold? (yes/no): ").lower()
     raining = input("Is it raining? (yes/no): ").lower()
-    if cold == "yes" and raining == "yes":
-        print("Wear a waterproof coat.")
-    elif cold == "yes" and raining == "no":
-        print("Wear a warm coat.")
-    elif cold == "no" and raining == "yes":
-        print("Carry an umbrella.")
+    if cold  in ['yes', 'no'] or raining in ['yes', 'no']:
+        if cold == "yes" and raining == "yes":
+            print("Wear a waterproof coat.")
+        elif cold == "yes" and raining == "no":
+            print("Wear a warm coat.")
+        elif cold == "no" and raining == "yes":
+            print("Carry an umbrella.")
+        else:
+            print("Wear light clothing.")
     else:
-        print("Wear light clothing.")
-# Call the function
+        print("invalid input. Please enter a valid input.")
+        weather_advice()
+
 weather_advice()
 
 # Exercise 5: What's the Season?
@@ -164,7 +179,6 @@ weather_advice()
 # - Ensure to validate input formats and handle unexpected inputs gracefully.
 
 def determine_season():
-    # Your code goes here. Remember to indent!
     month = input("Enter the month of the year (Jan - Dec): ").capitalize()
     day = int(input("Enter the day of the month: "))
     if month not in ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']:
